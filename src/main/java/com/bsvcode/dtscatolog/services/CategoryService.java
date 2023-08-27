@@ -44,7 +44,7 @@ public class CategoryService {
   @Transactional
   public CategoryDTO update(Long id, CategoryDTO category) {
     try {
-      Category entity = repository.getOne(id);
+      Category entity = repository.getReferenceById(id);
       entity.setName(category.getName());
       entity = repository.save(entity);
       return new CategoryDTO(entity);
