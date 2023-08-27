@@ -1,3 +1,3 @@
-insert into category  (name) values ('Books');
-insert into category  (name) values ('Computer');
-insert into category  (name) values ('Eletronics');
+INSERT INTO CATEGORY (name, created_At) VALUES ('Books', NOW());
+INSERT INTO CATEGORY (name, created_At) VALUES ('Electronics', NOW());
+INSERT INTO CATEGORY (name, created_At) VALUES ('Computers', NOW());
