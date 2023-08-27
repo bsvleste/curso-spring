@@ -1,9 +1,9 @@
 package com.bsvcode.dtscatolog.services.exceptions;
 
-public class EntityNotFoundException extends RuntimeException {
+public class ResourceNotFoundException extends RuntimeException {
   private static final long serialVersionUID = 1L;
 
-  public EntityNotFoundException(String mensagem) {
+  public ResourceNotFoundException(String mensagem) {
     super(mensagem);
   }
 }

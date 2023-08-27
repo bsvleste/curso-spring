@@ -1,6 +1,6 @@
 package com.bsvcode.dtscatolog.resources.exceptions;
 
-import com.bsvcode.dtscatolog.services.exceptions.EntityNotFoundException;
+import com.bsvcode.dtscatolog.services.exceptions.ResourceNotFoundException;
 
 import java.time.Instant;
 
@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-  @ExceptionHandler(EntityNotFoundException.class)
-  public ResponseEntity<StandarError> entityNotFound(EntityNotFoundException e, HttpServletRequest request) {
+  @ExceptionHandler(ResourceNotFoundException.class)
+  public ResponseEntity<StandarError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request) {
     StandarError error = new StandarError();
     error.setTimestamp(Instant.now());
     error.setStatus(HttpStatus.NOT_FOUND.value());

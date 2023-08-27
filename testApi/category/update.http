@@ -1,4 +1,4 @@
-POST http://localhost:8080/categories HTTP/1.1
+PUT  http://localhost:8080/categories/2 HTTP/1.1
 content-type: application/json
 
   {
