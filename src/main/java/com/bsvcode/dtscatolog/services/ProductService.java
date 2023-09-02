@@ -10,8 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bsvcode.dtscatolog.dtos.CategoryDTO;
 import com.bsvcode.dtscatolog.dtos.ProductDTO;
+import com.bsvcode.dtscatolog.entities.Category;
 import com.bsvcode.dtscatolog.entities.Product;
+import com.bsvcode.dtscatolog.repositories.CategoryRepository;
 import com.bsvcode.dtscatolog.repositories.ProductRepository;
 import com.bsvcode.dtscatolog.services.exceptions.DatabaseResourceNotFoundException;
 import com.bsvcode.dtscatolog.services.exceptions.ResourceNotFoundException;
@@ -22,6 +25,8 @@ import jakarta.persistence.EntityNotFoundException;
 public class ProductService {
   @Autowired
   private ProductRepository repository;
+  @Autowired
+  private CategoryRepository categoryRepository;
 
   @Transactional(readOnly = true)
   public Page<ProductDTO> findAllPaged(PageRequest pageRequest) {
@@ -39,8 +44,7 @@ public class ProductService {
   @Transactional
   public ProductDTO insert(ProductDTO product) {
     Product entity = new Product();
-    entity.setName(product.getName());
-    entity = repository.save(entity);
+    copyToEntity(product, entity);
     return new ProductDTO(entity);
   }
 
@@ -48,12 +52,26 @@ public class ProductService {
   public ProductDTO update(Long id, ProductDTO product) {
     try {
       Product entity = repository.getReferenceById(id);
-      entity.setName(product.getName());
-      entity = repository.save(entity);
+      copyToEntity(product, entity);
+
       return new ProductDTO(entity);
     } catch (EntityNotFoundException exception) {
       throw new ResourceNotFoundException("Id Not found");
     }
+  }
+
+  private void copyToEntity(ProductDTO product, Product entity) {
+    entity.setName(product.getName());
+    entity.setDescription(product.getDescription());
+    entity.setDate(product.getDate());
+    entity.setImgUrl(product.getImgUrl());
+    entity.setPrice(product.getPrice());
+    entity.getCategories().clear();
+    for (CategoryDTO categoryDTO : product.getCategories()) {
+      Category category = categoryRepository.getOne(categoryDTO.getId());
+      entity.getCategories().add(category);
+    }
+    entity = repository.save(entity);
   }
 
   public void delete(Long id) {

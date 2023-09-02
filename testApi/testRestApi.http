@@ -1,0 +1,73 @@
+###get all categories
+GET http://localhost:8080/categories
+###get categories by id
+GET http://localhost:8080/categories/1
+
+###get all products
+GET http://localhost:8080/products
+
+###get products by id
+GET http://localhost:8080/products/2
+
+###Delete categories
+DELETE  http://localhost:8080/categories/1
+
+###Delete products
+DELETE  http://localhost:8080/products/1
+
+###create categories
+POST http://localhost:8080/categories HTTP/1.1
+content-type: application/json
+
+  {
+    "name":"Foods"
+  }
+
+###
+##Create product
+POST http://localhost:8080/products HTTP/1.1
+content-type: application/json
+
+  {
+    "name":"PS5",
+    "description":"The new generate PS5",
+    "imgUrl":"",
+    "price":600.0,
+    "date":"2023-08-25T00:00:00Z",
+    "categories":[
+      {
+        "id":2
+      },
+      {
+        "id":3
+      }
+    ]
+  }
+
+###update categories
+PUT  http://localhost:8080/categories/4 HTTP/1.1
+content-type: application/json
+
+  {
+    "name":"Drinks"
+  }
+
+###update products
+PUT  http://localhost:8080/products/2 HTTP/1.1
+content-type: application/json
+
+  {
+    "name":"PS5",
+    "description":"The new generate PS5",
+    "imgUrl":"",
+    "price":600.0,
+    "date":"2023-08-25T00:00:00Z",
+    "categories":[
+      {
+        "id":2
+      },
+      {
+        "id":3
+      }
+    ]
+  }
