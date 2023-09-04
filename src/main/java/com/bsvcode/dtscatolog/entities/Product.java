@@ -121,4 +121,16 @@ public class Product implements Serializable {
     return true;
   }
 
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setCategories(Set<Category> categories) {
+    this.categories = categories;
+  }
+
 }

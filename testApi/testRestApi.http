@@ -7,13 +7,13 @@ GET http://localhost:8080/categories/1
 GET http://localhost:8080/products?page=0&size=12&sort=name,asc
 
 ###get products by id
-GET http://localhost:8080/products/2
+GET http://localhost:8080/products/26
 
 ###Delete categories
-DELETE  http://localhost:8080/categories/1
+DELETE  http://localhost:8080/categories/10000
 
 ###Delete products
-DELETE  http://localhost:8080/products/1
+DELETE  http://localhost:8080/products/10000
 
 ###create categories
 POST http://localhost:8080/categories HTTP/1.1
