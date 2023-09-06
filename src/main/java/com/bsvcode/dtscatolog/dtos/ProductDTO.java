@@ -98,4 +98,8 @@ public class ProductDTO implements Serializable {
     this.categories = categories;
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
 }

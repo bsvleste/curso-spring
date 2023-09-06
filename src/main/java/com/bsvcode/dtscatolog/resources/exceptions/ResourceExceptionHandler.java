@@ -5,18 +5,19 @@ import com.bsvcode.dtscatolog.services.exceptions.ResourceNotFoundException;
 
 import java.time.Instant;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
   @ExceptionHandler(ResourceNotFoundException.class)
   public ResponseEntity<StandarError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request) {
-    StandarError error = new StandarError();
     HttpStatus status = HttpStatus.NOT_FOUND;
+    StandarError error = new StandarError();
     error.setTimestamp(Instant.now());
     error.setStatus(status.value());
     error.setError("Resource not found");
@@ -27,8 +28,8 @@ public class ResourceExceptionHandler {
 
   @ExceptionHandler(DatabaseResourceNotFoundException.class)
   public ResponseEntity<StandarError> database(DatabaseResourceNotFoundException e, HttpServletRequest request) {
-    StandarError error = new StandarError();
     HttpStatus status = HttpStatus.BAD_REQUEST;
+    StandarError error = new StandarError();
     error.setTimestamp(Instant.now());
     error.setStatus(status.value());
     error.setError("Database exception");

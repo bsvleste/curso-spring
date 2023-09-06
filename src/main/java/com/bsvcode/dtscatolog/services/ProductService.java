@@ -2,6 +2,8 @@ package com.bsvcode.dtscatolog.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -18,8 +20,6 @@ import com.bsvcode.dtscatolog.repositories.CategoryRepository;
 import com.bsvcode.dtscatolog.repositories.ProductRepository;
 import com.bsvcode.dtscatolog.services.exceptions.DatabaseResourceNotFoundException;
 import com.bsvcode.dtscatolog.services.exceptions.ResourceNotFoundException;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ProductService {
@@ -51,7 +51,7 @@ public class ProductService {
   @Transactional
   public ProductDTO update(Long id, ProductDTO product) {
     try {
-      Product entity = repository.getReferenceById(id);
+      Product entity = repository.getOne(id);
       copyToEntity(product, entity);
 
       return new ProductDTO(entity);
@@ -64,7 +64,7 @@ public class ProductService {
     try {
       repository.deleteById(id);
     } catch (EmptyResultDataAccessException exception) {
-      throw new ResourceNotFoundException("Id Not found");
+      throw new ResourceNotFoundException("Id Not found" + id);
     } catch (DataIntegrityViolationException exception) {
       throw new DatabaseResourceNotFoundException("Integrity Violation");
     }

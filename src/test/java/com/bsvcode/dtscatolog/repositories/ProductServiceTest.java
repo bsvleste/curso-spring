@@ -11,10 +11,13 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.bsvcode.dtscatolog.dtos.ProductDTO;
 import com.bsvcode.dtscatolog.entities.Product;
 import com.bsvcode.dtscatolog.repositories.factory.ProductRespositoryFactory;
 import com.bsvcode.dtscatolog.services.ProductService;
@@ -49,8 +52,11 @@ public class ProductServiceTest {
   }
 
   @Test
-  public void findAllShouldShowallProducts() {
-
+  public void findAllProductsPagedShouldReturnPage() {
+    Pageable pageable = PageRequest.of(0, 10);
+    Page<ProductDTO> result = service.findAllPaged(pageable);
+    Assertions.assertNotNull(result);
+    Mockito.verify(repository, Mockito.times(1)).findAll(pageable);
   }
 
   @Test

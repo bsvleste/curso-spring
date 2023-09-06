@@ -3,14 +3,14 @@ package com.bsvcode.dtscatolog.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
@@ -21,8 +21,10 @@ public class Category implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
+
   @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant createdAt;
+
   @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant updatedAt;
 
@@ -34,16 +36,28 @@ public class Category implements Serializable {
     this.name = name;
   }
 
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public Instant getCreatedAt() {
     return createdAt;
   }
 
   public Instant getUpdatedAt() {
     return updatedAt;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   @PrePersist
@@ -54,14 +68,6 @@ public class Category implements Serializable {
   @PreUpdate
   public void preUpdate() {
     updatedAt = Instant.now();
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public Long getId() {
-    return id;
   }
 
   @Override
