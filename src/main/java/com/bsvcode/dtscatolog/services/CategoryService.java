@@ -34,7 +34,7 @@ public class CategoryService {
   public CategoryDTO findById(Long id) {
     Optional<Category> optionalCategory = repository.findById(id);
     Category category = optionalCategory.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-    return new CategoryDTO(category);
+    return new CategoryDTO(category, category.getProducts());
   }
 
   @Transactional
