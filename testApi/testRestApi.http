@@ -40,10 +40,10 @@ POST http://localhost:8080/products HTTP/1.1
 content-type: application/json
 
   {
-    "name":"PS52017",
+    "name":"PS",
     "description":"The new generate PS5",
     "imgUrl":"",
-    "price":600.0,
+    "price":4500.0,
     "date":"2023-08-25T00:00:00Z",
     "categories":[
       {
