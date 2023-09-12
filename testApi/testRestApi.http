@@ -1,28 +1,10 @@
-###get all categories
-GET http://localhost:8080/categories?page=0&size=12&sort=name,asc
-###get categories by id
-GET http://localhost:8080/categories/3
+###update categories
+PUT  http://localhost:8080/categories/1 HTTP/1.1
+content-type: application/json
 
-###get all products
-GET http://localhost:8080/products?page=0&size=12&sort=name,asc
-
-### get all users
-GET http://localhost:8080/users?page=0&size=12&sort=firstName,asc
-
-###get products by id
-GET http://localhost:8080/products/2
-
-###get users by id
-GET http://localhost:8080/users/2
-
-###delete users by id
-DELETE http://localhost:8080/users/3
-
-###Delete categories
-DELETE  http://localhost:8080/categories/10000
-
-###Delete products
-DELETE  http://localhost:8080/products/2000
+  {
+    "name":"Drinks"
+  }
 
 ###create categories
 POST http://localhost:8080/categories HTTP/1.1
@@ -32,13 +14,33 @@ content-type: application/json
     "name":"Foods"
   }
 
+###Delete categories
+DELETE  http://localhost:8080/categories/10000
+###get all categories
+GET http://localhost:8080/categories?page=0&size=12&sort=name,asc
+
+###get categories by id
+GET http://localhost:8080/categories/3
+
+###get all products
+GET http://localhost:8080/products?page=0&size=12&sort=name,asc
+
+
+
+###get products by id
+GET http://localhost:8080/products/2
+
+###Delete products
+DELETE  http://localhost:8080/products/2000
+
+
 ###
 ##Create product
 POST http://localhost:8080/products HTTP/1.1
 content-type: application/json
 
   {
-    "name":"PS5",
+    "name":"PS52017",
     "description":"The new generate PS5",
     "imgUrl":"",
     "price":600.0,
@@ -51,14 +53,6 @@ content-type: application/json
         "id":3
       }
     ]
-  }
-
-###update categories
-PUT  http://localhost:8080/categories/1000 HTTP/1.1
-content-type: application/json
-
-  {
-    "name":"Drinks"
   }
 
 ###update products
@@ -80,7 +74,14 @@ content-type: application/json
     ]
   }
 
+### get all users
+GET http://localhost:8080/users?page=0&size=12&sort=firstName,asc
 
+###get users by id
+GET http://localhost:8080/users/2
+
+###delete users by id
+DELETE http://localhost:8080/users/
 
 ###Create user
 POST http://localhost:8080/users HTTP/1.1

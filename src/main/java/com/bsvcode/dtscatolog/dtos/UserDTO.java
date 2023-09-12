@@ -2,6 +2,11 @@ package com.bsvcode.dtscatolog.dtos;
 
 import java.io.Serializable;
 import java.util.Set;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import java.util.HashSet;
 
 import com.bsvcode.dtscatolog.entities.User;
@@ -10,9 +15,11 @@ public class UserDTO implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private Long id;
-
+  @Size(min = 3, max = 60, message = "Deve ter entre 3 e 60 caracteres")
+  @NotBlank(message = "Campo Obrigatorio")
   private String firstName;
   private String lastName;
+  @Email(message = "Digite um email valido")
   private String email;
 
   Set<RoleDTO> roles = new HashSet<>();
